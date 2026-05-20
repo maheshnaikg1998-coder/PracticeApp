@@ -4,7 +4,7 @@
 import SwiftUI
 
 struct Book: Identifiable {
-    let id: Int  // BUG 1: Should be UUID, not Int — List will crash without unique IDs generated properly
+    let id: UUID // BUG 1: Should be UUID, not Int — List will crash without unique IDs generated properly
     let title: String
     let author: String
     let pages: Int
@@ -19,9 +19,9 @@ class BookViewModel: ObservableObject {
         // Simulating data load
         // BUG 2: All books have same id = 0, causing duplicate ID crash in List
         books = [
-            Book(id: 0, title: "Swift Programming", author: "Apple", pages: 300),
-            Book(id: 0, title: "SwiftUI Essentials", author: "Paul Hudson", pages: 250),
-            Book(id: 0, title: "Combine Framework", author: "Joseph Heck", pages: 200)
+            Book(id: UUID(), title: "Swift Programming", author: "Apple", pages: 300),
+            Book(id: UUID(), title: "SwiftUI Essentials", author: "Paul Hudson", pages: 250),
+            Book(id: UUID(), title: "Combine Framework", author: "Joseph Heck", pages: 200)
         ]
         isLoading = false
     }
